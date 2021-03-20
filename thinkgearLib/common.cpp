@@ -121,9 +121,10 @@ void parse_payload(const unsigned char *payload, unsigned char pLength, tg_packe
                 packet->data.rr_interval += payload[++i];
                 packet->flag.rr_interval = 1;
                 break;
-            case 0x00: // unknown codes
-            case 0xba:
-            case 0xbc:
+//            case 0x00: // unknown codes
+//            case 0xba:
+//            case 0xbc:
+            default:
                 i++;
                 break;
         }
