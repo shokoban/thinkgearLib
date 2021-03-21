@@ -18,33 +18,33 @@ This code is for get data from Mindwave that is machine made by NeuroSky.
 cmake_minimum_required(VERSION 3.10)
 project(thinkgear)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_C_STANDARD 11)
 
 file(GLOB THINKGEAR_LIB
     thinkgear/common.*
     thinkgear/thinkgear.*
 )
-add_executable(thinkgear main.cpp ${THINKGEAR_LIB})
+add_executable(thinkgear main.c ${THINKGEAR_LIB})
 ```
 #### For Ubuntu.
 ``` CMake
 cmake_minimum_required(VERSION 3.10)
 project(thinkgear)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_C_STANDARD 11)
 
 file(GLOB THINKGEAR_LIB
     thinkgear/common.*
     thinkgear/thinkgear.*
 )
-add_executable(thinkgear main.cpp ${THINKGEAR_LIB})
+add_executable(thinkgear main.c ${THINKGEAR_LIB})
 target_link_libraries(thinkgear bluetooth)
 ```
 
-## main.cpp
-```cpp
-#include <cstdio>
-#include <ctime>
+## main.c
+```c
+#include <stdio.h>
+#include <time.h>
 
 #include "thinkgearLib/thinkgear.h"
 #ifdef _MSC_VER
