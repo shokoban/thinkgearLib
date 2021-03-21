@@ -19,7 +19,6 @@ int main(int argc, char **argv) {
     int state;
     tg_packet_t packet;
 
-
 #ifdef _MSC_VER
     if ((state = tg_connect(&hCom, port)) == TG_CANNOT_CONNECT) {
 #else

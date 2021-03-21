@@ -35,8 +35,8 @@ unsigned char calc_checksum(const unsigned char *payload, unsigned char pLength)
     return chechsum;
 }
 
-char check_sync(unsigned char code){
-    return code == SYNC_CODE? TG_OK: TG_NG;
+char check_sync(unsigned char code) {
+    return code == SYNC_CODE ? TG_OK : TG_NG;
 }
 
 //void parse_payload(const unsigned char *payload, unsigned char pLength, tg_data_t *packet, tg_recv_flag_t *flags) {
@@ -129,27 +129,34 @@ void parse_payload(const unsigned char *payload, unsigned char pLength, tg_packe
                 break;
         }
     }
+}
 
+/*
+ * https://www.neurosky.jp/faq/
+ * ( RawData * (1.8 / 4096) ) / 0.002 [uV]
+ */
+double raw2uV(int raw_data) {
+    return (raw_data * (1.8 / 4096)) / 0.002;
 }
 
 void show_data(tg_packet_t packet) {
     if (packet.flag.poor) {
-        printf("poor : %d, ",         packet.data.poor);
+        printf("poor : %3d, ", packet.data.poor);
         printf("\n");
-        printf("attention : %d, ",    packet.data.attention);
-        printf("meditation : %d, ",   packet.data.meditation);
+        printf("attention : %3d, ", packet.data.attention);
+        printf("meditation : %3d, ", packet.data.meditation);
         printf("\n");
-        printf("delta: %d, ",         packet.data.asic_eeg_power.delta);
-        printf("theta: %d, ",         packet.data.asic_eeg_power.theta);
+        printf("delta: %d, ", packet.data.asic_eeg_power.delta);
+        printf("theta: %d, ", packet.data.asic_eeg_power.theta);
         printf("\n");
-        printf("low_alpha: %d, ",     packet.data.asic_eeg_power.low_alpha);
-        printf("high_alpha: %d, ",    packet.data.asic_eeg_power.high_alpha);
-        printf("low_beta: %d, ",      packet.data.asic_eeg_power.low_beta);
-        printf("high_beta: %d, ",     packet.data.asic_eeg_power.high_beta);
-        printf("low_gamma: %d, ",     packet.data.asic_eeg_power.low_gamma);
-        printf("mid_gamma: %d, ",     packet.data.asic_eeg_power.mid_gamma);
+        printf("low_alpha: %d, ", packet.data.asic_eeg_power.low_alpha);
+        printf("high_alpha: %d, ", packet.data.asic_eeg_power.high_alpha);
+        printf("low_beta: %d, ", packet.data.asic_eeg_power.low_beta);
+        printf("high_beta: %d, ", packet.data.asic_eeg_power.high_beta);
+        printf("low_gamma: %d, ", packet.data.asic_eeg_power.low_gamma);
+        printf("mid_gamma: %d, ", packet.data.asic_eeg_power.mid_gamma);
         printf("\n");
     }
 //    if (packet.flag.raw_wave)
-//        printf("raw : %d\n",          packet.data.raw_wave);
+//        printf("raw : %6d,  raw[uV]: %lf\n", packet.data.raw_wave, raw2uV(packet.data.raw_wave));
 }
