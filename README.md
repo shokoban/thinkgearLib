@@ -1,7 +1,6 @@
 
 # ThinkgearLib for Mindwave
 
-## Description
 This code is for get data from Mindwave that is machine made by NeuroSky.
 
 ## 
